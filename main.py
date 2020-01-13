@@ -11,23 +11,25 @@ class Main():
         self.mainLoop()
     def mainLoop(self):
         continue_game = self.word_manipulation.actualizeWord(self.secret_word, self.char_list)[1]
-        print(self.secret_word)
-        vies = 5
+        vies = int(2 + 1 / len(self.secret_word) * 30)
+        print("Vous avez {} vies pour reussir.".format(vies))
         while continue_game == False and vies > 0:
-            char = input("Entrez une lettre: ")
+            char = input("Entrez une lettre: ").lower()
             if len(char) == 1:
                 if char not in self.char_list:
                     self.char_list.append(char)
                 actually_word, continue_game = self.word_manipulation.actualizeWord(self.secret_word, self.char_list)
                 print(actually_word)
-                if continue_game == False:
+                if char not in self.secret_word:
                     vies -= 1
+                    print("Il vous reste {} vies".format(vies))
             else:
                 pass
         if vies > 0:
             print("Vous avez gagne!!!")
         else:
             print("Vous etes pendu :p")
+            print("Le mot etait: ", self.secret_word)
 
 
 if __name__ == "__main__":

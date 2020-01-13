@@ -8,7 +8,7 @@ class WordFinder():
         with open("mots.txt", "r") as file:
             ct = file.read()
             for mot in ct.split("\n"):
-                self.word_list.append(mot)
+                self.word_list.append(mot.lower())
         return self.word_list
     def wordDraft(self, word_list=None):
         if word_list == None:
